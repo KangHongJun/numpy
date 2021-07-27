@@ -7,9 +7,21 @@ np.array([1,2,3])
 
 #10 ~ 30미만까지 5씩
 np.arange(10,30,5)
+#정렬
+np.sort()
 
 A = np.array([[1, 1], [2, 1]])
 B = np.array([[1, 1], [4, 1]])
+
+#배열 연결
+np.concatenate((A, B))
+
+x = np.array([[1, 2], [3, 4]])
+y = np.array([[5, 6]])
+#axis=0 없어도 되긴함
+np.concatenate((x, y), axis=0)
+
+
 #행렬곱 
 A@B | A.dot(B)
 
@@ -25,6 +37,7 @@ rg.random((2,3))
 #0~11(12개) 3,4배열
 C = np.arange(12).reshape(3, 4)
 
+#ndlm 차원 수, size 요소 수, shape 모양
 #sum, min, max, axis-0은 행, 1은 열, exp, sqrt
 
 a = np.floor(10 * rg.random((2, 2)))
@@ -58,7 +71,39 @@ e = np.floor(10 * rg.random((2, 12)))
 np.hsplit(a, 3)
 #잘 모르겠다
 np.hsplit(a, 3, 4)
+
 #얕은 복사 주의
+f=a #주소가 같다
+f=a.view() #주소 다름
+#deep copy
+g = a.copy()
+
+a = np.arange(12)**2
+i = np.array([1, 1, 3, 8, 5])
+j = np.array([[3, 4], [9, 7]])
+#함수에 넣듯이 i의 제곱수들이 나옴
+a[i] 
+a[i]
 
 
+palette = np.array([[0, 0, 0],[255, 0, 0], [0, 255, 0],[0, 0, 255], [255, 255, 255]]) 
+image = np.array([0,1,4,4])
+#image의 값 각각 대입->0이면 모두0, 수의 위치에 255, 4일 경우엔 모두255
+palette[image]
 
+a = np.arange(12).reshape(3, 4)
+i = np.array([[0, 1], [1,2]])
+j = np.array([[2, 1],[3,3]])
+l = (i, j)
+#a[0,2], a[1,1]
+#a[1,3], a[3,3]
+a[i,j] #a[l]
+
+#행기준 가장 작은값 위치 출력
+argmax(axis=0)
+
+time = np.linspace(20, 145, 5)
+data = np.sin(np.arange(20)).reshape(5, 4)
+ind = data.argmax(axis=0)
+
+time_max=time[ind]#ind 값으로 정렬
