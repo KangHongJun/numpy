@@ -99,11 +99,34 @@ l = (i, j)
 #a[1,3], a[3,3]
 a[i,j] #a[l]
 
+a = np.arange(12).reshape(3, 4)
+b1 = np.array([False, True, True])   
+b2 = np.array([True, False, True, False])
+
 #행기준 가장 작은값 위치 출력
 argmax(axis=0)
 
 time = np.linspace(20, 145, 5)
 data = np.sin(np.arange(20)).reshape(5, 4)
-ind = data.argmax(axis=0)
+ind = data.argmax(axis=0) #가장 큰 값의 위치
 
 time_max=time[ind]#ind 값으로 정렬
+
+ab = np.arange(5)
+#특정위치 값 바꾸기
+ab[[1, 3, 4]] = 0 #[1, 2, 3], += 1
+
+#boolean
+a = np.arange(12).reshape(3, 4)
+b = a > 4 #T F 판별출력
+a[b] #만족하는 배열 출력
+a[b] = 0 #만족하는 부분 0으로
+
+#벡터결합 np.ix_
+a = np.array([2, 3, 4, 5])
+b = np.array([8, 5, 4])
+c = np.array([5, 4, 6, 8, 3])
+ax, bx, cx = np.ix_(a, b, c)
+
+
+
