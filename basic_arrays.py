@@ -1,5 +1,3 @@
-#어레이 생성
-
 #Converting python sequence numpy arrays
 
 a1D = np.array([1, 2, 3, 4])
