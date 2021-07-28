@@ -27,6 +27,7 @@ A@B | A.dot(B)
 
 #난수 생성기
 rg = np.random.default_rng(1)
+ng.integers(5, size=(2, 4)) #0~4이하의 값으로 2,4배열에 랜덤
 
 #0~6 3등분
 np.linspace(0, 6, 3)
@@ -81,7 +82,7 @@ g = a.copy()
 a = np.arange(12)**2
 i = np.array([1, 1, 3, 8, 5])
 j = np.array([[3, 4], [9, 7]])
-#함수에 넣듯이 i의 제곱수들이 나옴
+#함수에 넣듯이 i의 제곱수들이 나옴- [조건]
 a[i] 
 a[i]
 
@@ -127,6 +128,13 @@ a = np.array([2, 3, 4, 5])
 b = np.array([8, 5, 4])
 c = np.array([5, 4, 6, 8, 3])
 ax, bx, cx = np.ix_(a, b, c)
+
+#파일로 저장(csv 가능)
+np.save('filename', a)
+#파일 읽기
+b = np.load('filename.npy')
+print(b)
+
 
 
 
