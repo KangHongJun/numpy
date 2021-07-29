@@ -23,7 +23,7 @@ y = np.arange(35).reshape(5,7)
 y[np.array([0,2,4]), np.array([0,1,2])]
 y[np.array([0,2,4])] #행 기준
 
-#booleBn or mask index arrays
+#Boolen or mask index arrays
 b = y>20
 y[b]
 b[:,5]
