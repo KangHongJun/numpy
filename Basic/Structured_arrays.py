@@ -172,16 +172,50 @@ y[:] = 11
 y.dtype, y.shape, y.strides
 x['a'].shape
 y['a'].shape
- x = np.zeros((2, 2), dtype=[('a', np.int32), ('b', np.float64, (3, 3))])
+x = np.zeros((2, 2), dtype=[('a', np.int32), ('b', np.float64, (3, 3))])
   
+#여러 필드에 접근하기 - 다중 필드 색인이 있는 구조화된 배열은 색인화하고 할당가능. 색인은 필드 이름 목록
+a = np.zeros(3, dtype=[('a', 'i4'), ('b', 'i4'), ('c', 'f4')])
+a[['a', 'c']]
+a[['a', 'c']] = (2, 3)
+a
+a[['a', 'c']] = a[['c', 'a']]
+
+#구조적 스칼라를 얻기 위해 정수로 인덱싱
+x = np.array([(1, 2., 3.)], dtype='i, f, f')
+scalar = x[0]
+scalar
+
+x = np.array([(1, 2), (3, 4)], dtype=[('foo', 'i8'), ('bar', 'f4')])
+s = x[0]
+s['bar'] = 100
+x
+
+scalar = np.array([(1, 2., 3.)], dtype='i, f, f')[0]
+scalar[0]
+scalar[1] = 4
+scalar.item(), type(scalar.item())
+
+#레코드 배열
 """
+선택적인 편의로numpy는 ndarray 하위 클래스를 제공하여 인덱스 대신 속성별로 구조화된 배열의 필드에 엑세스 가능
+레코드 배열은 배열에서 얻은 구조화된 스칼라에 대한 속성으로 필드 엑세스를 허용하는 특수 데이터 유형 사용
+recarray 생성하기 위한 기능 제공
+ numpy.rec.array. 사용하여 레코드 배열
 """
+recordarr = np.rec.array([(1, 2., 'Hello'), (2, 3., "World")],dtype=[('foo', 'i4'),('bar', 'f4'), ('baz', 'S10')])
+
+recordarr.bar 
+recordarr[1:2]
+
+rec.array([(2, 3., b'World')],dtype=[('foo', '<i4'), ('bar', '<f4'), ('baz', 'S10')])
+
+recordarr[1:2].foo
+recordarr.foo[1:2]
+recordarr[1].baz
+
+arr = np.array([(1, 2., 'Hello'), (2, 3., "World")],dtype=[('foo', 'i4'), ('bar', 'f4'), ('baz', 'S10')])
+recordarr = np.rec.array(arr) #레코드 배열로 변환
 
 
-
-
-
-
-
-
-
+#도우미 함수 
